@@ -1,0 +1,14 @@
+{
+  "manifest_version": 1,
+  "id": "com.jpmyrmecol.amadeus.result-viewer",
+  "name": "Result Viewer (template)",
+  "version": "0.1.0",
+  "author": "Yusuke Notomi",
+  "description": "An independent example that reads AMADEUS CSV results and YAML configuration files.",
+  "license": "0BSD",
+  "platforms": ["windows-x86_64", "macos-arm64", "macos-x86_64", "linux-x86_64", "linux-arm64"],
+  "python": "3.12",
+  "entry_point": "app.py",
+  "dependencies": ["PyYAML==6.0.2"],
+  "update_url": null
+}
