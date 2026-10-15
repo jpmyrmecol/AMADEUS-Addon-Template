@@ -42,9 +42,11 @@ On macOS or Linux:
 
 The application also accepts `--config PATH` and `--results PATH`. `--check` reads files and prints JSON without opening a GUI. `--data-dir PATH` selects a settings directory for standalone use. When launched by AMADEUS, `AMADEUS_ADDON_DATA_DIR` provides the persistent location automatically.
 
+This template opts in to dropping `.csv`, `.yaml`, and `.yml` files onto its Home panel through the `drop_extensions` field in `addon.json`. A dropped file is passed to the independent process as `--dropped-file PATH`. The viewer uses CSV files as results and YAML files as configuration. Ordinary clicks still launch without a file. To allow video drops in your own application, declare its video suffixes (such as `.mp4` or `.avi`) and implement the `--dropped-file` argument yourself. Omit `drop_extensions` or set it to `[]` to disable Home file drops.
+
 ## Make your own add-on
 
-Change `id`, `name`, `author`, `description`, `license`, `platforms` and `dependencies` in `addon.json`. Use your own immutable qualified ID so your application does not replace this sample. Set `entry_point` to your independent Python entry script. Add your application files to `PAYLOAD` in `build_addon.py` and replace the sample GUI/reader with your implementation. Include the appropriate `LICENSE` and dependency notices.
+Change `id`, `name`, `author`, `description`, `license`, `platforms`, `dependencies` and optional `drop_extensions` in `addon.json`. Use your own immutable qualified ID so your application does not replace this sample. Set `entry_point` to your independent Python entry script. Add your application files to `PAYLOAD` in `build_addon.py` and replace the sample GUI/reader with your implementation. Include the appropriate `LICENSE` and dependency notices.
 
 Keep program resources relative to `__file__`. Save settings and outputs outside the program directory. The host sets the working directory to the application's persistent data directory. Do not assume that the working directory contains the application source.
 

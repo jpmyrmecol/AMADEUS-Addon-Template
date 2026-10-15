@@ -66,6 +66,19 @@ class TemplateTests(unittest.TestCase):
                                  "--results", str(self.results)], capture_output=True, text=True, check=True)
         self.assertEqual(json.loads(result.stdout)["csv"]["records_after_first_row"], 2)
 
+    def test_dropped_csv_and_yaml_are_recognized(self):
+        for suffix, path, key in ((".csv", self.results, "csv"), (".yaml", self.config, "configuration")):
+            with self.subTest(suffix=suffix):
+                proc = subprocess.run([sys.executable, str(ROOT / "app.py"), "--check", "--dropped-file", str(path)],
+                                      capture_output=True, text=True, check=True)
+                data = json.loads(proc.stdout)
+                self.assertIn(key, data)
+        invalid = self.root / "input.mp4"
+        invalid.write_bytes(b"test")
+        proc = subprocess.run([sys.executable, str(ROOT / "app.py"), "--check", "--dropped-file", str(invalid)],
+                              capture_output=True, text=True)
+        self.assertNotEqual(proc.returncode, 0)
+
     def test_build_contains_only_payload(self):
         archive = build(ROOT, self.root / "dist")
         with zipfile.ZipFile(archive) as content:

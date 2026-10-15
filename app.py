@@ -121,10 +121,20 @@ def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--config", type=Path, help="AMADEUS config.yaml (read only)")
     parser.add_argument("--results", type=Path, help="AMADEUS results CSV (read only)")
+    parser.add_argument("--dropped-file", type=Path,
+                        help="A file dropped onto this add-on's Home panel (CSV, YAML)")
     parser.add_argument("--data-dir", type=Path,
                         default=Path(os.environ.get("AMADEUS_ADDON_DATA_DIR", Path.home() / ".amadeus-result-viewer")))
     parser.add_argument("--check", action="store_true", help="Read inputs and print JSON without opening a GUI")
     args = parser.parse_args()
+    if args.dropped_file is not None:
+        suffix = args.dropped_file.suffix.lower()
+        if suffix == ".csv":
+            args.results = args.dropped_file
+        elif suffix in {".yaml", ".yml"}:
+            args.config = args.dropped_file
+        else:
+            parser.error("The example accepts dropped CSV, YAML and YML files only.")
     if args.check:
         print(json.dumps(inspect_inputs(args.config, args.results), indent=2, ensure_ascii=False, default=str))
     else:
