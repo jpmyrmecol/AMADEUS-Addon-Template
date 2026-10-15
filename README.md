@@ -76,7 +76,7 @@ Tests cover read-only file handling, unsafe YAML rejection, standalone invocatio
 
 ## Specification and licensing
 
-The authoritative format and security notes are in [AMADEUS's add-on guide](https://github.com/jpmyrmecol/AMADEUS/blob/main/docs/ADDONS.md). Format 1 supports independent Python entry scripts, exact direct dependency pins, compatible binary wheels from PyPI, and optional HTTPS update descriptors. It does not support arbitrary executable installers, private package indexes, or source builds.
+The authoritative format and security notes are in [AMADEUS's add-on guide](https://github.com/jpmyrmecol/AMADEUS/blob/main/tools/ADDONS.md). Format 1 supports independent Python entry scripts, exact direct dependency pins, compatible binary wheels from PyPI, and optional HTTPS update descriptors. It does not support arbitrary executable installers, private package indexes, or source builds.
 
 The template code is [0BSD](LICENSE). Developers may use it when creating applications under other licenses, subject to the licenses of their own additions and dependencies. PyYAML has its own license. AMADEUS remains AGPL-3.0-only. This template does not grant exceptions to AMADEUS's or Ultralytics's licensing terms. Do not copy AGPL implementation code into an add-on and assume that a separate process changes its license.
 
