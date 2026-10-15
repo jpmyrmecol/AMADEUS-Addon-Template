@@ -48,7 +48,7 @@ Change `id`, `name`, `author`, `description`, `license`, `platforms` and `depend
 
 Keep program resources relative to `__file__`. Save settings and outputs outside the program directory. The host sets the working directory to the application's persistent data directory. Do not assume that the working directory contains the application source.
 
-Increment `version` using `MAJOR.MINOR.PATCH` for each update. Build and distribute the ZIP. The host's **Update** menu can install a newer ZIP with the same ID. **Uninstall** removes the program and virtual environments while retaining data and logs.
+Increment `version` using `MAJOR.MINOR.PATCH` for each update. Build and distribute the ZIP. The host's **Update** menu can install a newer ZIP with the same ID. **Uninstall** permanently removes the complete add-on folder, including its virtual environments, settings, data and logs. **Update** preserves settings, data and logs.
 
 The sample declares intended support for Windows x64, macOS Apple Silicon/Intel, and Linux x64/ARM64. This declaration is not a claim that every OS/architecture has been tested. Test the actual packaged application on each platform you declare. AMADEUS itself may support a narrower set of host platforms.
 
